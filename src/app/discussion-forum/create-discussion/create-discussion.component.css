@@ -1,0 +1,15 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+
+mat-card {
+
+    background-color: antiquewhite;
+    font-size: large;
+     width: 50%; 
+     margin-left: 25%;
+      margin-top: 10%;
+  }
+

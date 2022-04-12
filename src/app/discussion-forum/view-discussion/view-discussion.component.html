@@ -1,0 +1,40 @@
+
+     <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: center; color:indianred;">Discussions</h1>
+      <br>
+      <br>
+      <br>
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+    <h3 *ngIf="discussions.length == 0">No discussions posted Yet!!</h3>
+    <mat-accordion multi="true" *ngIf="discussions.length > 0">
+      <mat-expansion-panel  [expanded]="true" *ngFor="let discussion of discussions">
+        <mat-expansion-panel-header>
+          <h4>{{ discussion.title }}</h4>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+         <h2 style="font-weight: 600; color: brown;">{{discussion.content}}</h2>
+         </mat-panel-description>
+
+         <mat-form-field id="ans">
+          <p><input type="text" matInput id="answer" placeholder = "Answer Here" name="answer" [(ngModel)]="answer"></p>
+          </mat-form-field>
+          <button mat-button color="warn" (click)="updateAnswer(discussion._id)">Submit</button>
+          <br><br>
+        <h4 *ngIf="discussion.answers.length!=0">Other Answers:</h4> <br>
+        <div *ngFor="let answer of discussion.answers" style="color:maroon; padding-left: 10rem; padding-right: 10rem;">
+          <p style="font-size: larger; font-weight:100; padding-left: 2rem;">{{answer.answeredby}}</p><br>
+          <h5 style="padding-left: 5rem;">{{answer.answer}}</h5><br>
+          <div style="padding-left: 40%;"> 
+          <button mat-button color="primary"  (click)="onVote(answer.answer, discussion._id, 'upvotes')">UpVote</button>
+          <button mat-button color="warn" (click)="onVote(answer.answer, discussion._id, 'downvotes')">DownVote</button><br><br>
+        </div>
+        <h1 style="padding-left: 44%;">{{answer.upVotes - answer.downVotes}}</h1>
+          <br>
+          <hr>
+        </div>
+        <!-- <h4 id="content">{{ post.content }}</h4> -->
+        <!-- <mat-action-row > -->
+            
+        <!-- </mat-action-row> -->
+      </mat-expansion-panel>
+    </mat-accordion>
+    
